@@ -1,0 +1,34 @@
+# importing the modules
+import threading   
+import time        
+  
+# creating thread instance where count = 3
+      
+  
+# creating instance
+def display(message):    
+    
+    # calling acquire method
+    semaphore.acquire()                
+
+    print("Hello!")
+    time.sleep(1)
+    print(message)
+          
+        # calling release method
+    semaphore.release()    
+          
+# creating multiple thread 
+t1 = threading.Thread(target = display , args = ('Hello there!',))
+t2 = threading.Thread(target = display , args = ('Hello World!',))
+t3 = threading.Thread(target = display , args = ('I love pizza!',))
+t4 = threading.Thread(target = display , args = ('hey!',))
+t5 = threading.Thread(target = display , args = ('Semaphores are essentially multiple locks wrapped up in one object.',))
+semaphore = threading.Semaphore(3)  
+  
+# calling the threads 
+t1.start()
+t2.start()
+t3.start()
+t4.start()
+t5.start()
