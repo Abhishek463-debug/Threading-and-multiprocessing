@@ -1,0 +1,23 @@
+import multiprocessing
+
+def square_nums(list1, result_list, summation):
+    for idx, element in enumerate(list1):
+        result_list[idx] = element**2
+    summation.value = sum(result_list)
+    print(f"Result list in process: {result_list[:]}")
+    print(f"Total summation in process: {summation.value}")
+
+
+
+if __name__ == '__main__':
+    l1 = [1,2,3,4]
+    result = multiprocessing.Array('i', 4)
+    sum1 = multiprocessing.Value('i')
+
+
+    p1 = multiprocessing.Process(target = square_nums, args = (l1, result, sum1))
+    p1.start()
+    p1.join()
+    print("Result in main process: {}".format(result[:]))
+
+    print("Summation in main process: {}".format(sum1.value))
